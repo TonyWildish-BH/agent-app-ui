@@ -28,7 +28,7 @@ select_cli_value() {
   local expected="${1:-}"
   local line trimmed fallback=""
 
-  while IFS= read -r line; do
+  while IFS= read -r line || [[ -n "$line" ]]; do
     trimmed="$(printf "%s" "$line" | tr -d '\r' | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')"
     [[ -z "$trimmed" ]] && continue
 
